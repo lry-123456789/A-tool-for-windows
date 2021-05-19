@@ -2248,7 +2248,7 @@ void odd(int a)
                             odd[1] = k;
                             odd[2] = j;
                             odd[3] = i - k - j;
-                            printf("%d=%d+%d+%d", odd[0], odd[1], odd[2], odd[3]);
+                            printf("%d=%d+%d+%d\n", odd[0], odd[1], odd[2], odd[3]);
                         }
                     }
                 }
