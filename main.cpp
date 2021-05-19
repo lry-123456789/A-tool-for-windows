@@ -109,6 +109,7 @@ int init(int a)
 	printf("16.win10 高级计算器\n");
     printf("17.win10 数学统计程序\n");
     printf("18.win10 卸载激活密钥(强烈建议不要使用)\n");
+    printf("19.win10 安装企业版密钥\n");
 	printf("请做出选择\n");
 	scanf_s("%d", &b);
 	return b;
@@ -890,7 +891,7 @@ void connect_17(int a)
 void connect_18(int a)
 {
     SetConsoleTitle(TEXT("WIN10系统小工具软件 > 18.win10 卸载产品激活密钥（不建议使用）>请验证管理员密码"));
-    system("runas /user: administrator  cmd");
+    system("runas /user:administrator  cmd");
     SetConsoleTitle(TEXT("WIN10系统小工具软件 > 18.win10 卸载产品激活密钥（不建议使用）>请进行验证(0/2)"));
     int b, c, d;
     srand((unsigned int)time(NULL));
@@ -908,6 +909,7 @@ void connect_18(int a)
     b = rand() % 1000;
     c = rand() % 1000;
     printf("%d*%d=\n请输入正确的答案以验证\n", b, c);
+    scanf_s("%d", &d);
     if (d != b * c)
     {
         printf("OSERROR:访问目标被拒绝!\n");
