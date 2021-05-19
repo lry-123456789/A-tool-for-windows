@@ -1803,7 +1803,7 @@ void login1_1(int a)
 
 void login2_1(int a)
 {
-    while (1)
+    //while (1)
     {
         int b = 0;
         b = xuanze0(a);
@@ -1862,7 +1862,7 @@ void login2_1(int a)
 
 void login3_1(int a)
 {
-    while (1)
+    //while (1)
     {
         a = 0;
         a = xuanze0(a);
