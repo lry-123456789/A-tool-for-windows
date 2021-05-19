@@ -2,6 +2,7 @@
 #include<stdlib.h>
 #include<Windows.h>
 #include<math.h>
+#include<time.h>
 int init(int a);						//程序进入模块
 void link(int a);						//模块之间连接模块
 void connect_0(int a);					//0.退出本程序
@@ -22,6 +23,7 @@ void connect_14(int a);					//14.win10 python脚本运行加速
 void connect_15(int a);					//15.win10 打包python脚本为可执行程序
 void connect_16(int a);					//16.win10 高级计算器
 void connect_17(int a);                 //17.win10 数学统计程序
+void connect_18(int a);                 //18.win10 卸载激活密钥（不建议使用）
 void error_warnings(int a);				//输入错误判断函数
 //模块内函数(16.高级计算器)
 int login(int a);                       //用户登录所必要的原函数
@@ -103,8 +105,9 @@ int init(int a)
 	printf("13.win10 python环境完善(已经安装python环境)\n");
 	printf("14.win10 python脚本运行加速\n");
 	printf("15.win10 打包python脚本为可执行文件\n");
-	printf("16.win10 高级计算器(目前处于禁用状态)\n");
+	printf("16.win10 高级计算器\n");
     printf("17.win10 数学统计程序\n");
+    printf("18.win10 卸载激活密钥(强烈建议不要使用)\n");
 	printf("请做出选择\n");
 	scanf_s("%d", &b);
 	return b;
@@ -223,6 +226,13 @@ void link(int a)
             SetConsoleTitle(TEXT("WIN10系统小工具软件>17.win10 数学统计程序"));
             connect_17(1);
         }
+        break;
+        case 18:
+        {
+            SetConsoleTitle(TEXT("WIN10系统小工具软件>18.win10 卸载产品激活密钥（不建议使用）"));
+            connect_18(1);
+        }
+        break;
 		default:
 		{
 			error_warnings(1);
@@ -868,6 +878,40 @@ void connect_17(int a)
     printf("13、残差平方和为：%lf\n", l);
     Sleep(10000);
     system("pause");
+}
+
+void connect_18(int a)
+{
+    SetConsoleTitle(TEXT("WIN10系统小工具软件 > 18.win10 卸载产品激活密钥（不建议使用）>请验证管理员密码"));
+    system("runas /user: administrator  cmd");
+    SetConsoleTitle(TEXT("WIN10系统小工具软件 > 18.win10 卸载产品激活密钥（不建议使用）>请进行验证(0/2)"));
+    int b, c, d;
+    srand((unsigned int)time(NULL));
+    b = rand() % 1000;
+    c = rand() % 1000;
+    printf("%d+%d=\n请输入正确的答案以验证\n", b, c);
+    scanf_s("%d", &d);
+    if (d != b + c)
+    {
+        printf("OSERROR:访问目标被拒绝!\n");
+        system("pause");
+        exit(0);
+    }
+    SetConsoleTitle(TEXT("WIN10系统小工具软件 > 18.win10 卸载产品激活密钥（不建议使用）>请进行验证(1/2)"));
+    b = rand() % 1000;
+    c = rand() % 1000;
+    printf("%d*%d=\n请输入正确的答案以验证\n", b, c);
+    if (d != b * c)
+    {
+        printf("OSERROR:访问目标被拒绝!\n");
+        system("pause");
+        exit(0);
+    }
+    SetConsoleTitle(TEXT("WIN10系统小工具软件 > 18.win10 卸载产品激活密钥（不建议使用）>请进行验证(2/2)==验证完成，开始执行操作"));
+    printf("是否继续卸载win10系统密钥？(不建议)");
+    printf("\n是，请按任意键继续，否，请直接关闭本软件\n");
+    system("pause");
+    system("slmgr.vbs /upk");
 }
 
 //输入错误判断函数
