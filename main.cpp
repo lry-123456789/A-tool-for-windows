@@ -24,6 +24,7 @@ void connect_15(int a);					//15.win10 打包python脚本为可执行程序
 void connect_16(int a);					//16.win10 高级计算器
 void connect_17(int a);                 //17.win10 数学统计程序
 void connect_18(int a);                 //18.win10 卸载激活密钥（不建议使用）
+void connect_19(int a);                 //19.win10 安装企业版密钥
 void error_warnings(int a);				//输入错误判断函数
 //模块内函数(16.高级计算器)
 int login(int a);                       //用户登录所必要的原函数
@@ -231,6 +232,12 @@ void link(int a)
         {
             SetConsoleTitle(TEXT("WIN10系统小工具软件>18.win10 卸载产品激活密钥（不建议使用）"));
             connect_18(1);
+        }
+        break;
+        case 19:
+        {
+            SetConsoleTitle(TEXT("WIN10系统小工具软件>19.win10 更改产品密钥至企业版"));
+            connect_19(1);
         }
         break;
 		default:
@@ -912,6 +919,17 @@ void connect_18(int a)
     printf("\n是，请按任意键继续，否，请直接关闭本软件\n");
     system("pause");
     system("slmgr.vbs /upk");
+}
+
+void connect_19(int a)
+{
+    system("echo 是否安装企业版密钥？此操作将会使您电脑上的密钥卸载，是否继续？");
+    system("echo 是，请继续；否，请强制退出本软件");
+    system("pause");
+    connect_18(1);
+    system("slmgr /ipk NPPR9-FWDCX-D2C8J-H872K-2YT43");
+    system("slmgr /skms zh.us.to");
+    system("slmgr /ato");
 }
 
 //输入错误判断函数
