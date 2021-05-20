@@ -25,6 +25,8 @@ void connect_16(int a);					//16.win10 高级计算器
 void connect_17(int a);                 //17.win10 数学统计程序
 void connect_18(int a);                 //18.win10 卸载激活密钥（不建议使用）
 void connect_19(int a);                 //19.win10 安装企业版密钥
+void connect_20(int a);                 //20.win10 定时关机
+void connect_21(int a);                 //21.win10 取消定时关机
 void error_warnings(int a);				//输入错误判断函数
 //模块内函数(16.高级计算器)
 int login(int a);                       //用户登录所必要的原函数
@@ -110,6 +112,8 @@ int init(int a)
     printf("17.win10 数学统计程序\n");
     printf("18.win10 卸载激活密钥(强烈建议不要使用)\n");
     printf("19.win10 安装企业版密钥\n");
+    printf("20.win10 定时关机\n");
+    printf("21.win10 取消定时关机\n");
 	printf("请做出选择\n");
 	scanf_s("%d", &b);
 	return b;
@@ -239,6 +243,18 @@ void link(int a)
         {
             SetConsoleTitle(TEXT("WIN10系统小工具软件>19.win10 更改产品密钥至企业版"));
             connect_19(1);
+        }
+        break;
+        case 20:
+        {
+            SetConsoleTitle(TEXT("WIN10系统小工具软件>20.win10 定时关机"));
+            connect_20(1);
+        }
+        break;
+        case 21:
+        {
+            SetConsoleTitle(TEXT("WIN10系统小工具软件>21.取消定时关机"));
+            connect_21(1);
         }
         break;
 		default:
@@ -932,6 +948,94 @@ void connect_19(int a)
     system("slmgr /ipk NPPR9-FWDCX-D2C8J-H872K-2YT43");
     system("slmgr /skms zh.us.to");
     system("slmgr /ato");
+}
+
+void connect_20(int a)
+{
+    printf("请做出选择：\n");
+    printf("1.立即关机\n");
+    printf("2.1分钟后关机\n");
+    printf("3.5分钟后关机\n");
+    printf("4.10分钟后关机\n");
+    printf("5.15分钟后关机\n");
+    printf("6.20分钟后关机\n");
+    printf("7.30分钟后关机\n");
+    printf("8.40分钟后关机\n");
+    printf("9.45分钟后关机\n");
+    printf("10.1小时后关机\n");
+    printf("11.2小时后关机\n");
+    printf("12.4小时后关机\n");
+    printf("13.6小时后关机\n");
+    printf("14.8小时后关机\n");
+    printf("15.1天后关机\n");
+    int b;
+    scanf_s("%d", &b);
+    if (b == 1)
+    {
+        printf("禁止使用\n");
+        //system("shutdown -s -t 0");
+    }
+    if (b == 2)
+    {
+        system("shutdown -s -t 60");
+    }
+    if (b == 3)
+    {
+        system("shutdown -s -t 300");
+    }
+    if (b == 4)
+    {
+        system("shutdown -s -t 600");
+    }
+    if (b == 5)
+    {
+        system("shutdown -s -t 900");
+    }
+    if (b == 6)
+    {
+        system("shutdown -s -t 1200");
+    }
+    if (b == 7)
+    {
+        system("shutdown -s -t 1800");
+    }
+    if (b == 8)
+    {
+        system("shutdown -s -t 2400");
+    }
+    if (b == 9)
+    {
+        system("shutdown -s -t 2700");
+    }
+    if (b == 10)
+    {
+        system("shutdown -s -t 3600");
+    }
+    if (b == 11)
+    {
+        system("shutdown -s -t 7200");
+    }
+    if (b == 12)
+    {
+        system("shutdown -s -t 14400");
+    }
+    if (b == 13)
+    {
+        system("shutdown -s -t 21600");
+    }
+    if (b == 14)
+    {
+        system("shutdown -s -t 28800");
+    }
+    if (b == 15)
+    {
+        system("shutdown -s -t 86400");
+    }
+}
+
+void connect_21(int a)
+{
+    system("shutdown -a");
 }
 
 //输入错误判断函数
