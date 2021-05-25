@@ -28,6 +28,7 @@ void connect_19(int a);                 //19.win10 安装企业版密钥
 void connect_20(int a);                 //20.win10 定时关机
 void connect_21(int a);                 //21.win10 取消定时关机
 void error_warnings(int a);				//输入错误判断函数
+
 //模块内函数(16.高级计算器)
 int login(int a);                       //用户登录所必要的原函数
 void login1(int a);                     //调用准备进行登录的原函数
@@ -69,7 +70,7 @@ void login4(int a);                     //补丁程序
 void xuanze4_3(int a);                  //验证哥德巴赫猜想的函数
 void eve(int a);                        //验证偶数
 void odd(int a);                        //验证奇数
-int isprime(int a);                    //验证所判断的数字是否为奇数
+int isprime(int a);                     //验证所判断的数字是否为奇数
 int main()
 {
 	SetConsoleTitle(TEXT("WIN10系统小工具软件"));
@@ -115,7 +116,86 @@ int init(int a)
     printf("20.win10 定时关机\n");
     printf("21.win10 取消定时关机\n");
 	printf("请做出选择\n");
-	scanf_s("%d", &b);
+	scanf_s("%d", &b);//该操作可能存在异常（当输入的字符不是数字时，可能会导致程序进入死循环）
+    //可以进行修复这个漏洞的补丁为：
+    char ch[100]={'\0'};
+    int i=0,j=0;
+    while(i<100&&j==0)
+    {
+        scanf_s("%c",&ch[i]);
+        if(ch[i]=='\n')
+        {
+            j++;
+        }
+        i++;
+    }
+    if (i == 4)
+    {
+        if (ch[0] == 'e' || ch[0] == 'E')
+        {
+            if (ch[1] == 'x' || ch[1] == 'X')
+            {
+                if (ch[2] == 'i' || ch[i] == 'I')
+                {
+                    if (ch[3] == 't' || ch[3] == 'T')
+                    {
+                        printf("是否退出本程序？\n");
+                        system("pause");
+                        exit(0);
+                    }
+                }
+            }
+        }
+    }
+    if (i == 3)
+    {
+        if (ch[0] == 'c' || ch[0] == 'C')
+        {
+            if (ch[1] == 'm' || ch[1] == 'M')
+            {
+                if (ch[2] == 'd' || ch[2] == 'D')
+                {
+                    printf("正在启动命令提示符，请稍后\n");
+                    system("cmd");
+                }
+            }
+        }
+    }
+    if (i == 10)
+    {
+        if (ch[0] == 'p' || ch[0] == 'P')
+        {
+            if (ch[1] == 'o' || ch[1] == 'O')
+            {
+                if (ch[2] == 'w' || ch[2] == 'W')
+                {
+                    if (ch[3] == 'e' || ch[3] == 'E')
+                    {
+                        if (ch[4] == 'r' || ch[4] == 'R')
+                        {
+                            if (ch[5] == 's' || ch[5] == 'S')
+                            {
+                                if (ch[6] == 'h' || ch[6] == 'H')
+                                {
+                                    if (ch[7] == 'e' || ch[7] == 'E')
+                                    {
+                                        if (ch[8] == 'l' || ch[8] == 'L')
+                                        {
+                                            if (ch[9] == 'l' || ch[9] == 'L')
+                                            {
+                                                printf("正在启动powershell,请稍后");
+                                                system("powershell");
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 	return b;
 }
 void link(int a)
