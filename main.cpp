@@ -1,8 +1,41 @@
+#define _CRT_SECURE_NO_WARNINGS
+#pragma once
+// stdafx.h : 标准系统包含文件的包含文件，
+// 或是经常使用但不常更改的
+// 特定于项目的包含文件
+#include<corecrt.h>
+// 包括 SDKDDKVer.h 将定义可用的最高版本的 Windows 平台。
+// 如果要为以前的 Windows 平台生成应用程序，请包括 WinSDKVer.h，并将
+// 将 _WIN32_WINNT 宏设置为要支持的平台，然后再包括 SDKDDKVer.h。
+#include <SDKDDKVer.h>
+//此处为#include<targetver.h>
+#include <stdio.h>
+#include <tchar.h>
+//此处为#include<stdafx.h>
+// TODO:  在此处引用程序需要的其他头文件
 #include<stdio.h>
 #include<stdlib.h>
 #include<Windows.h>
 #include<math.h>
 #include<time.h>
+#include<atlimage.h> 
+#include<stdio.h>
+#include<graphics.h>   //图形界面库头文件
+#include<math.h>       //计算圆形的轨迹坐标
+#include<conio.h>
+#include<time.h>
+#include<stdlib.h>
+#include<mmsystem.h>
+#pragma comment(lib,"winmm.lib")
+#define WND_WIDTH 1000
+#define WND_HEIGHT 1000
+#define PI 3.1415826535897932384626
+
+void init1(int a);
+void show(int a);
+int mouse(int a);
+
+
 int init(int a);						//程序进入模块
 void link(int a);						//模块之间连接模块
 void connect_0(int a);					//0.退出本程序
@@ -71,329 +104,410 @@ void xuanze4_3(int a);                  //验证哥德巴赫猜想的函数
 void eve(int a);                        //验证偶数
 void odd(int a);                        //验证奇数
 int isprime(int a);                     //验证所判断的数字是否为奇数
+
+void a1(int a);
+void a2(int a);
+
 int main()
 {
-	SetConsoleTitle(TEXT("WIN10系统小工具软件"));
-	int a;
-	//a = init(1);
-	while(1)
-	{
-		a = init(1);
-		link(a);
-	}
-	system("pause");
-	return 0;
+    int a;
+    printf("请选择程序所使用的系统\n");
+    printf("1.version1.0.1（可以正常使用）");
+    printf("2.version2.0.1(存在少量的bug)()");
+    scanf_s("%d", &a);
+    if (a == 1)
+    {
+        a1(1);
+    }
+    if (a == 2)
+    {
+        a2(1);
+    }
+    exit(0);
+    return 0;
 }
+void a2(int a)
+{
+    SetConsoleTitle(TEXT("WIN10系统小工具软件"));
+    int b;
+    initgraph(WND_WIDTH, WND_HEIGHT);
+    //BeginBatchDraw();
+    setbkcolor(WHITE);
+    cleardevice();
+    //init(1);
+    while (1)
+    {
+        while (!_kbhit())
+        {
+            init1(1);
+            b = mouse(1);
+            //EndBatchDraw();
+            //link(b);
+        }
+    }
+    system("pause");
+}
+void a1(int a)
+{
+    SetConsoleTitle(TEXT("WIN10系统小工具软件"));
+    int b;
+    //a = init(1);
+    while (1)
+    {
+        b = init(1);
+        link(b);
+    }
+    system("pause");
+}
+void init1(int a)
+{
+	setlinecolor(BLACK);
+	line(100, 50, 900, 50);
+	line(100, 50, 100, 100);
+	line(100, 100, 900, 100);
+	line(900, 100, 900, 50);
+	settextcolor(BROWN);
+	outtextxy(300, 60, TEXT("WIN10小工具软件 版本2.0.1 BETA            请使用鼠标直接做出选择"));
+	outtextxy(500, 78, TEXT("------ powered by 刘仁宇"));
+	int i = 0, j = 0;
+	for (i = 0; i < 4; i++)
+	{
+		line(50 + i * 300, 150, 50 + i * 300, 900);
+	}
+	for (j = 0; j < 11; j++)
+	{
+		line(50, 150 + 75 * j, 950, 150 + 75 * j);
+	}
+	show(1);
+}
+void show(int a)
+{
+	settextcolor(BROWN);
+	outtextxy(55, 180, TEXT("0.退出本程序"));
+	outtextxy(355, 180, TEXT("1.win10 提高系统性能，可能引起CPU超频")); outtextxy(355, 200, TEXT("(WIN10卓越性能模式)"));
+	outtextxy(655, 180, TEXT("2.win10 磁盘检查并修复损坏的文件以及"));  outtextxy(655, 200, TEXT("扇区"));
+	outtextxy(55, 255, TEXT("3.win10 检查文件与系统是否出现保护性"));   outtextxy(55, 275, TEXT("冲突"));
+	outtextxy(355, 255, TEXT("4.win10 列出现有的电源模式"));
+	outtextxy(655, 255, TEXT("5.win10 完全关闭WIN10卓越性能模式"));
+	outtextxy(55, 330, TEXT("6.win10 垃圾清理程序(目前只支持C盘文件")); outtextxy(55, 350, TEXT("清理)"));
+	outtextxy(355, 330, TEXT("7.win10 启动命令提示符"));
+	outtextxy(655, 330, TEXT("8.win10 启动powershell"));
+	outtextxy(55, 405, TEXT("9.win10 系统文件修复"));
+	outtextxy(355, 405, TEXT("10.win10 桌面图标异常修复"));
+	outtextxy(655, 405, TEXT("11.win10 资源管理器异常修复"));
+	outtextxy(55, 480, TEXT("12.win10 启动任务管理器"));
+	outtextxy(355, 480, TEXT("13.win10 python环境完善(已经安装python")); outtextxy(355, 500, TEXT("环境)"));
+	outtextxy(655, 480, TEXT("14.win10 python脚本运行加速"));
+	outtextxy(55, 555, TEXT("15.win10 打包python脚本为可执行文件"));
+	outtextxy(355, 555, TEXT("16.win10 高级计算器"));
+	outtextxy(655, 555, TEXT("17.win10 数学统计程序"));
+	outtextxy(55, 630, TEXT("18.win10 卸载激活密钥(强烈建议不要使用)"));
+	outtextxy(355, 630, TEXT("19.win10 安装企业版密钥"));
+	outtextxy(655, 630, TEXT("20.win10 定时关机"));
+	outtextxy(55, 705, TEXT("21.win10 取消定时关机"));
+	outtextxy(355, 705, TEXT("更多功能，敬请期待"));
+}
+
+int mouse(int a)
+{
+	MOUSEMSG m;
+	FlushMouseMsgBuffer();
+	int i = 0;
+	int j = 0;
+	int b = 0;
+	while (1)
+	{
+		//控制模板
+		//下面为控制的一个实际的例子
+		/******************************************************\
+		while (MouseHit())
+		{
+			m = GetMouseMsg();
+			if ((m.x >= 105 && m.x <= 282) && (m.y >= 423 && m.y <= 480))//管理员模式
+			{
+				setlinecolor(RED);
+				rectangle(105, 423, 282, 480);
+				if (m.uMsg == WM_LBUTTONDOWN)
+				{
+					//n = 1;
+					return;
+				}
+			}
+			if (!((m.x >= 105 && m.x <= 282) && (m.y >= 423 && m.y <= 480)))//鼠标放在按钮变色
+			{
+				setlinecolor(WHITE);
+				rectangle(105, 423, 282, 480);
+			}
+			if ((m.x >= 751 && m.x <= 929) && (m.y >= 425 && m.y <= 482))//用户模式
+			{
+				setlinecolor(RED);
+				rectangle(751, 425, 929, 482);
+				if (m.uMsg == WM_LBUTTONDOWN)
+				{
+					//n = 2;
+					return;
+				}
+			}
+			if (!((m.x >= 751 && m.x <= 929) && (m.y >= 425 && m.y <= 482)))//鼠标放在按钮变色
+			{
+				setlinecolor(WHITE);
+				rectangle(751, 425, 929, 482);
+			}
+		}
+		\*******************************************************************/
+		while (MouseHit())
+		{
+			m = GetMouseMsg();
+			for (i = 0; i < 4; i++)
+			{
+				for (j = 0; j < 11; j++)
+				{
+					if ((m.x > (50 + 300 * i)) && (m.x < (50+300*i)) && (m.y > (75 * j+150)) && (m.y < (75 * j + 150)))
+					{
+						b = i + 3 * j;
+						return j;
+					}
+				}
+			}
+		}
+	}
+}
+
+//下面为迁移过来的数据文件
+
+
 int init(int a)
 {
-	SetConsoleTitle(TEXT("WIN10系统小工具软件"));
-	int b;
-	printf("\n****************************************\n");
-	printf("**         WIN10系统小工具软件        **\n");
-	printf("**  请在下方所列出的小工具中做出选择  **\n");
-	printf("**           version 1.0.1            **\n");
-	printf("****************************************\n");
-	printf("0.退出本程序\n");
-	printf("1.win10 提高系统性能，可能引起CPU超频(WIN10卓越性能模式)\n");
-	printf("2.win10 磁盘检查并修复损坏的文件以及扇区\n");
-	printf("3.win10 检查文件与系统是否出现保护性冲突\n");
-	printf("4.win10 列出现有的电源模式\n");
-	printf("5.win10 完全关闭WIN10卓越性能模式\n");
-	printf("6.win10 垃圾清理程序(目前只支持C盘文件清理)\n");
-	printf("7.win10 启动命令提示符\n");
-	printf("8.win10 启动powershell\n");
-	printf("9.win10 系统文件修复\n");
-	printf("10.win10 桌面图标异常修复\n");
-	printf("11.win10 资源管理器异常修复\n");
-	printf("12.win10 启动任务管理器\n");
-	printf("13.win10 python环境完善(已经安装python环境)\n");
-	printf("14.win10 python脚本运行加速\n");
-	printf("15.win10 打包python脚本为可执行文件\n");
-	printf("16.win10 高级计算器\n");
+    SetConsoleTitle(TEXT("WIN10系统小工具软件"));
+    int b;
+    printf("\n****************************************\n");
+    printf("**         WIN10系统小工具软件        **\n");
+    printf("**  请在下方所列出的小工具中做出选择  **\n");
+    printf("**           version 1.0.1            **\n");
+    printf("****************************************\n");
+    printf("0.退出本程序\n");
+    printf("1.win10 提高系统性能，可能引起CPU超频(WIN10卓越性能模式)\n");
+    printf("2.win10 磁盘检查并修复损坏的文件以及扇区\n");
+    printf("3.win10 检查文件与系统是否出现保护性冲突\n");
+    printf("4.win10 列出现有的电源模式\n");
+    printf("5.win10 完全关闭WIN10卓越性能模式\n");
+    printf("6.win10 垃圾清理程序(目前只支持C盘文件清理)\n");
+    printf("7.win10 启动命令提示符\n");
+    printf("8.win10 启动powershell\n");
+    printf("9.win10 系统文件修复\n");
+    printf("10.win10 桌面图标异常修复\n");
+    printf("11.win10 资源管理器异常修复\n");
+    printf("12.win10 启动任务管理器\n");
+    printf("13.win10 python环境完善(已经安装python环境)\n");
+    printf("14.win10 python脚本运行加速\n");
+    printf("15.win10 打包python脚本为可执行文件\n");
+    printf("16.win10 高级计算器\n");
     printf("17.win10 数学统计程序\n");
     printf("18.win10 卸载激活密钥(强烈建议不要使用)\n");
     printf("19.win10 安装企业版密钥\n");
     printf("20.win10 定时关机\n");
     printf("21.win10 取消定时关机\n");
-	printf("请做出选择\n");
-	scanf_s("%d", &b);//该操作可能存在异常（当输入的字符不是数字时，可能会导致程序进入死循环）
-    //可以进行修复这个漏洞的补丁为：
-    char ch[100]={'\0'};
-    int i=0,j=0;
-    while(i<100&&j==0)
-    {
-        scanf_s("%c",&ch[i]);
-        if(ch[i]=='\n')
-        {
-            j++;
-        }
-        i++;
-    }
-    if (i == 4)
-    {
-        if (ch[0] == 'e' || ch[0] == 'E')
-        {
-            if (ch[1] == 'x' || ch[1] == 'X')
-            {
-                if (ch[2] == 'i' || ch[i] == 'I')
-                {
-                    if (ch[3] == 't' || ch[3] == 'T')
-                    {
-                        printf("是否退出本程序？\n");
-                        system("pause");
-                        exit(0);
-                    }
-                }
-            }
-        }
-    }
-    if (i == 3)
-    {
-        if (ch[0] == 'c' || ch[0] == 'C')
-        {
-            if (ch[1] == 'm' || ch[1] == 'M')
-            {
-                if (ch[2] == 'd' || ch[2] == 'D')
-                {
-                    printf("正在启动命令提示符，请稍后\n");
-                    system("cmd");
-                }
-            }
-        }
-    }
-    if (i == 10)
-    {
-        if (ch[0] == 'p' || ch[0] == 'P')
-        {
-            if (ch[1] == 'o' || ch[1] == 'O')
-            {
-                if (ch[2] == 'w' || ch[2] == 'W')
-                {
-                    if (ch[3] == 'e' || ch[3] == 'E')
-                    {
-                        if (ch[4] == 'r' || ch[4] == 'R')
-                        {
-                            if (ch[5] == 's' || ch[5] == 'S')
-                            {
-                                if (ch[6] == 'h' || ch[6] == 'H')
-                                {
-                                    if (ch[7] == 'e' || ch[7] == 'E')
-                                    {
-                                        if (ch[8] == 'l' || ch[8] == 'L')
-                                        {
-                                            if (ch[9] == 'l' || ch[9] == 'L')
-                                            {
-                                                printf("正在启动powershell,请稍后");
-                                                system("powershell");
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-	return b;
+    printf("请做出选择\n");
+    scanf_s("%d", &b);
+    return b;
 }
+
 void link(int a)
 {
-	switch (a)
-	{
-		case 0:
-		{
-			SetConsoleTitle(TEXT("0.退出本程序"));
-			printf("感谢您的使用，版本 v1.0.1\n");
-			printf("程序制作：刘仁宇\n");
-			exit(0);
-		}
-		break;
-		case 1:
-		{
-			//cmd中代码为：powercfg -duplicatescheme e9a42b02-d5df-448d-aa00-03f14749eb61
-			SetConsoleTitle(TEXT("WIN10系统小工具软件>1.win10 提高系统性能，可能引起CPU超频(WIN10卓越性能模式)"));
-			connect_1(1);
-		}
-		break;
-		case 2:
-		{
-			SetConsoleTitle(TEXT("WIN10系统小工具软件>2.win10 磁盘检查并修复损坏的文件以及扇区(需要以管理员模式运行)"));
-			connect_2(1);
-		}
-		break;
-		case 3:
-		{
-			SetConsoleTitle(TEXT("WIN10系统小工具软件>3.win10 检查文件与系统是否出现保护性冲突(需要以管理员模式运行)"));
-			connect_3(1);
-		}
-		break;
-		case 4:
-		{
-			SetConsoleTitle(TEXT("WIN10系统小工具软件>4.win10 列出现有的电源模式"));
-			connect_4(1);
-		}
-		break;
-		case 5:
-		{
-			SetConsoleTitle(TEXT("WIN10系统小工具软件>5.win10 完全关闭WIN10卓越性能模式(需要手动操作)"));
-			connect_5(1);
-		}
-		break;
-		case 6:
-		{
-			SetConsoleTitle(TEXT("WIN10系统小工具软件>6.win10 垃圾清理程序(目前只支持C盘文件清理)"));
-			connect_6(1);
-		}
-		break;
-		case 7:
-		{
-			SetConsoleTitle(TEXT("WIN10系统小工具软件>7.win10 启动命令提示符"));
-			connect_7(1);
-		}
-		break;
-		case 8:
-		{
-			SetConsoleTitle(TEXT("WIN10系统小工具软件>8.win10 启动powershell"));
-			connect_8(1);
-		}
-		break;
-		case 9:
-		{
-			SetConsoleTitle(TEXT("WIN10系统小工具软件>9.win10 系统文件修复"));
-			connect_9(1);
-		}
-		break;
-		case 10:
-		{
-			SetConsoleTitle(TEXT("WIN10系统小工具软件>10.win10 桌面图标异常修复"));
-			connect_10(1);
-		}
-		break;
-		case 11:
-		{
-			SetConsoleTitle(TEXT("WIN10系统小工具软件>11.win10 资源管理器异常修复"));
-			connect_11(1);
-		}
-		break;
-		case 12:
-		{
-			SetConsoleTitle(TEXT("WIN10系统小工具软件>12.win10 启动任务管理器"));
-			connect_12(1);
-		}
-		break;
-		case 13:
-		{
-			SetConsoleTitle(TEXT("WIN10系统小工具软件>13.win10 python环境完善(已经安装python环境)"));
-			connect_13(1);
-		}
-		break;
-		case 14:
-		{
-			SetConsoleTitle(TEXT("WIN10系统小工具软件>14.win10 python脚本运行加速"));
-            connect_14(1);
-		}
-		break;
-		case 15:
-		{
-			SetConsoleTitle(TEXT("WIN10系统小工具软件>15.win10 打包python脚本为可执行文件"));
-            connect_15(1);
-		}
-		break;
-		case 16:
-		{
-			SetConsoleTitle(TEXT("WIN10系统小工具软件>16.win10 高级计算器"));
-            connect_16(1);
-		}
-		break;
-        case 17:
-        {
-            SetConsoleTitle(TEXT("WIN10系统小工具软件>17.win10 数学统计程序"));
-            connect_17(1);
-        }
-        break;
-        case 18:
-        {
-            SetConsoleTitle(TEXT("WIN10系统小工具软件>18.win10 卸载产品激活密钥（不建议使用）"));
-            connect_18(1);
-        }
-        break;
-        case 19:
-        {
-            SetConsoleTitle(TEXT("WIN10系统小工具软件>19.win10 更改产品密钥至企业版"));
-            connect_19(1);
-        }
-        break;
-        case 20:
-        {
-            SetConsoleTitle(TEXT("WIN10系统小工具软件>20.win10 定时关机"));
-            connect_20(1);
-        }
-        break;
-        case 21:
-        {
-            SetConsoleTitle(TEXT("WIN10系统小工具软件>21.取消定时关机"));
-            connect_21(1);
-        }
-        break;
-		default:
-		{
-			error_warnings(1);
-		}
-		break;
-	}
+    switch (a)
+    {
+    case 0:
+    {
+        SetConsoleTitle(TEXT("0.退出本程序"));
+        printf("感谢您的使用，版本 v1.0.1\n");
+        printf("程序制作：刘仁宇\n");
+        exit(0);
+    }
+    break;
+    case 1:
+    {
+        //cmd中代码为：powercfg -duplicatescheme e9a42b02-d5df-448d-aa00-03f14749eb61
+        SetConsoleTitle(TEXT("WIN10系统小工具软件>1.win10 提高系统性能，可能引起CPU超频(WIN10卓越性能模式)"));
+        connect_1(1);
+    }
+    break;
+    case 2:
+    {
+        SetConsoleTitle(TEXT("WIN10系统小工具软件>2.win10 磁盘检查并修复损坏的文件以及扇区(需要以管理员模式运行)"));
+        connect_2(1);
+    }
+    break;
+    case 3:
+    {
+        SetConsoleTitle(TEXT("WIN10系统小工具软件>3.win10 检查文件与系统是否出现保护性冲突(需要以管理员模式运行)"));
+        connect_3(1);
+    }
+    break;
+    case 4:
+    {
+        SetConsoleTitle(TEXT("WIN10系统小工具软件>4.win10 列出现有的电源模式"));
+        connect_4(1);
+    }
+    break;
+    case 5:
+    {
+        SetConsoleTitle(TEXT("WIN10系统小工具软件>5.win10 完全关闭WIN10卓越性能模式(需要手动操作)"));
+        connect_5(1);
+    }
+    break;
+    case 6:
+    {
+        SetConsoleTitle(TEXT("WIN10系统小工具软件>6.win10 垃圾清理程序(目前只支持C盘文件清理)"));
+        connect_6(1);
+    }
+    break;
+    case 7:
+    {
+        SetConsoleTitle(TEXT("WIN10系统小工具软件>7.win10 启动命令提示符"));
+        connect_7(1);
+    }
+    break;
+    case 8:
+    {
+        SetConsoleTitle(TEXT("WIN10系统小工具软件>8.win10 启动powershell"));
+        connect_8(1);
+    }
+    break;
+    case 9:
+    {
+        SetConsoleTitle(TEXT("WIN10系统小工具软件>9.win10 系统文件修复"));
+        connect_9(1);
+    }
+    break;
+    case 10:
+    {
+        SetConsoleTitle(TEXT("WIN10系统小工具软件>10.win10 桌面图标异常修复"));
+        connect_10(1);
+    }
+    break;
+    case 11:
+    {
+        SetConsoleTitle(TEXT("WIN10系统小工具软件>11.win10 资源管理器异常修复"));
+        connect_11(1);
+    }
+    break;
+    case 12:
+    {
+        SetConsoleTitle(TEXT("WIN10系统小工具软件>12.win10 启动任务管理器"));
+        connect_12(1);
+    }
+    break;
+    case 13:
+    {
+        SetConsoleTitle(TEXT("WIN10系统小工具软件>13.win10 python环境完善(已经安装python环境)"));
+        connect_13(1);
+    }
+    break;
+    case 14:
+    {
+        SetConsoleTitle(TEXT("WIN10系统小工具软件>14.win10 python脚本运行加速"));
+        connect_14(1);
+    }
+    break;
+    case 15:
+    {
+        SetConsoleTitle(TEXT("WIN10系统小工具软件>15.win10 打包python脚本为可执行文件"));
+        connect_15(1);
+    }
+    break;
+    case 16:
+    {
+        SetConsoleTitle(TEXT("WIN10系统小工具软件>16.win10 高级计算器"));
+        connect_16(1);
+    }
+    break;
+    case 17:
+    {
+        SetConsoleTitle(TEXT("WIN10系统小工具软件>17.win10 数学统计程序"));
+        connect_17(1);
+    }
+    break;
+    case 18:
+    {
+        SetConsoleTitle(TEXT("WIN10系统小工具软件>18.win10 卸载产品激活密钥（不建议使用）"));
+        connect_18(1);
+    }
+    break;
+    case 19:
+    {
+        SetConsoleTitle(TEXT("WIN10系统小工具软件>19.win10 更改产品密钥至企业版"));
+        connect_19(1);
+    }
+    break;
+    case 20:
+    {
+        SetConsoleTitle(TEXT("WIN10系统小工具软件>20.win10 定时关机"));
+        connect_20(1);
+    }
+    break;
+    case 21:
+    {
+        SetConsoleTitle(TEXT("WIN10系统小工具软件>21.取消定时关机"));
+        connect_21(1);
+    }
+    break;
+    default:
+    {
+        error_warnings(1);
+    }
+    break;
+    }
 }
 
 //0.退出本程序
 void connect_0(int a)
 {
-	printf("感谢您的使用，版本 v1.0.1\n");
-	printf("程序制作：刘仁宇\n");
-	exit(0);
+    printf("感谢您的使用，版本 v1.0.1\n");
+    printf("程序制作：刘仁宇\n");
+    exit(0);
 }
 
 //1.win10 提高系统性能，可能引起CPU超频(WIN10卓越性能模式)
 void connect_1(int a)
 {
-	//cmd 中应该输入的代码为 powercfg - duplicatescheme e9a42b02 - d5df - 448d - aa00 - 03f14749eb61
-	printf("正在生成新的电源方案，请稍后\n");
-	system("powercfg -duplicatescheme e9a42b02-d5df-448d-aa00-03f14749eb61");
-	printf("\n新的电源方案生成完成，该方案可以在一定的程度上提高电脑性能\n");
+    //cmd 中应该输入的代码为 powercfg - duplicatescheme e9a42b02 - d5df - 448d - aa00 - 03f14749eb61
+    printf("正在生成新的电源方案，请稍后\n");
+    system("powercfg -duplicatescheme e9a42b02-d5df-448d-aa00-03f14749eb61");
+    printf("\n新的电源方案生成完成，该方案可以在一定的程度上提高电脑性能\n");
 }
 
 //2.win10 磁盘检查并修复损坏的文件以及扇区
 void connect_2(int a)
 {
-	printf("开始连接管理员模式，");
-	printf("请稍后\n");
-	system("chkdsk");
+    printf("开始连接管理员模式，");
+    printf("请稍后\n");
+    system("chkdsk");
 }
 
 //3.win10 检查文件与系统是否出现保护性冲突
 void connect_3(int a)
 {
-	printf("开始连接管理员模式，请稍后\n");
-	system("sfc /scannow");
+    printf("开始连接管理员模式，请稍后\n");
+    system("sfc /scannow");
 }
 
 //4.win10 列出现有的电源模式
 void connect_4(int a)
 {
-	printf("正在连接电源管理模块，请稍后\n");
-	system(" powercfg  /L");
-	printf("\n电源管理模式已经全部列出\n");
+    printf("正在连接电源管理模块，请稍后\n");
+    system(" powercfg  /L");
+    printf("\n电源管理模式已经全部列出\n");
 }
 
 //5.win10 完全关闭WIN10卓越性能模式
 void connect_5(int a)
 {
-	printf("正在连接电源管理模块，请稍后\n");
-	printf("正在尝试完全关闭WIN10卓越性能模式，请稍后\n");
-	printf("未知GUID!!!");
-	system(" powercfg  /L");
-	printf("请在下方的窗口中输入powercfg  /d 以及删除的卓越性能模式的GUID");
-	system("cmd");
+    printf("正在连接电源管理模块，请稍后\n");
+    printf("正在尝试完全关闭WIN10卓越性能模式，请稍后\n");
+    printf("未知GUID!!!");
+    system(" powercfg  /L");
+    printf("请在下方的窗口中输入powercfg  /d 以及删除的卓越性能模式的GUID");
+    system("cmd");
 }
 
 //6.win10 垃圾清理程序(目前只支持C盘文件清理)
@@ -460,396 +574,396 @@ void connect_6(int a)
 //7.win10 启动命令提示符
 void connect_7(int a)
 {
-	system("cmd");
+    system("cmd");
 }
 
 //8.win10 启动powershell
 void connect_8(int a)
 {
-	system("powershell");
+    system("powershell");
 }
 
 //9.win10 系统文件修复
 void connect_9(int a)
 {
-	system("sfc /scannow");
+    system("sfc /scannow");
 }
 
 //10.win10 桌面图标异常修复
 void connect_10(int a)
 {
-	/**********\
-	* @echo off
-	taskkill /f /im explorer.exe
-	*CD /d %userprofile%\AppData\Local
-	*DEL IconCache.db /a
-	*start explorer.exe
-	*echo 执行完成
-	\**********/
-	system("该功能暂时不开放");
-	system("由于该功能需要使用数据库文件，删除缓存文件等操作，可能会引发问题，建议不使用本功能");
+    /**********\
+    * @echo off
+    taskkill /f /im explorer.exe
+    *CD /d %userprofile%\AppData\Local
+    *DEL IconCache.db /a
+    *start explorer.exe
+    *echo 执行完成
+    \**********/
+    system("该功能暂时不开放");
+    system("由于该功能需要使用数据库文件，删除缓存文件等操作，可能会引发问题，建议不使用本功能");
 }
 
 //11.win10 资源管理器异常修复
 void connect_11(int a)
 {
-	/*************\
-	*start powershell
-	*echo start-process powershell -verb runas
-	*sfc /scannow
-	*taskmgr
-	*taskkill /f /im explorer.exe /t
-	*start explorer.exe
-	\***************/
-	system("该功能暂不开放");
+    /*************\
+    *start powershell
+    *echo start-process powershell -verb runas
+    *sfc /scannow
+    *taskmgr
+    *taskkill /f /im explorer.exe /t
+    *start explorer.exe
+    \***************/
+    system("该功能暂不开放");
 }
 
 //12.win10 启动任务管理器
 void connect_12(int a)
 {
-	system("taskmgr");
+    system("taskmgr");
 }
 
 //13.win10 python环境完善(已经安装python环境)
 void connect_13(int a)
 {
-	/************\
-	 echo off
-	echo this program is powered by lry
-	echo 编写：刘仁宇
-	pip install pip
-	pip install --upgrade pip
-	pip install --xpython
-	pip install absl-py
-	pip install arxiv2bib
-	pip install astunparse
-	pip install attrs
-	pip install backcall
-	pip install baidu-api
-	pip install beautifulsoup4
-	pip install bibtexparser
-	pip install bs4
-	pip install cachetools
-	pip install certifi
-	pip install cffi
-	pip install chardet
-	pip install click
-	pip install colorma
-	pip install commonmark
-	pip install configparser
-	pip install dacite
-	pip install decorator
-	pip install dialite
-	pip install distlib
-	pip install docutils
-	pip install filetype
-	pip install fixit
-	pip install flake8
-	pip install Flask
-	pip install flatbuffers
-	pip install flexx
-	pip install future
-	pip install gast
-	pip install google
-	pip install google-auth
-	pip install google-auth-oauthlib
-	pip install google-pasta
-	pip install graphviz
-	pip install grpcio
-	pip install h5py
-	pip install habanero
-	pip install idna
-	pip install ipython
-	pip install ipython-genutils
-	pip install isbnlib
-	pip install isort
-	pip install itchat
-	pip install itsdangerous
-	pip install jazzit
-	pip install jedi
-	pip install Jinja2
-	pip install jsonschema
-	pip install Keras
-	pip install Keras-Preprocessing
-	pip install Kivy
-	pip install kivy-deps.angle
-	pip install kivy-deps.glew
-	pip install deps.sd12
-	pip install Kivy-Garden
-	pip install libcst
-	pip install lxml
-	pip install mach-nix
-	pip install Markdown
-	pip install MarkupSafe
-	pip install mccabe
-	pip install mutagen
-	pip install mxnet
-	pip install mypy-extensions
-	pip install numpy
-	pip install oauthlib
-	pip install opt-einsum
-	pip install packaging
-	pip install pandas
-	pip install pandasgui
-	pip install papis
-	pip install parso
-	pip install pbr
-	pip install pickleshare
-	pip install Pillow
-	pip install pip
-	pip install pippi
-	pip install playsound
-	pip install plotly
-	pip install prompt-toolkit
-	pip install protobuf
-	pip install pscript
-	pip install pyasnl
-	pip install pyasnl-modules
-	pip install pycodestyle
-	pip install pycparser
-	pip install pyfiglet
-	pip install pyflakes
-	pip install pygame
-	pip install Pygments
-	pip install pyinspect
-	pip install PyJWT
-	pip install pylambdarest
-	pip install pynput
-	pip install pyparsing
-	pip install pyperclip
-	pip install pypiwin32
-	pip install pypng
-	pip install PyQRCode
-	pip install PyQt5
-	pip install PyQt5-sip
-	pip install PyQtWebEngine
-	pip install pyrsistent
-	pip install PySoundFile
-	pip install python-dateutil
-	pip install python-doi
-	pip install python-slugify
-	pip install pytz
-	pip install pywin32
-	pip install PyYAML
-	pip install redis
-	pip install requests
-	pip install requests-oauthlib
-	pip install resolvelib
-	pip install retrying
-	pip install rich
-	pip install rsa
-	pip install scipy
-	pip install setuptools
-	pip install simplejson
-	pip install six
-	pip install soupsieve
-	pip install stevedore
-	pip install tensorboard
-	pip install tensorboard-plugin-wit
-	pip install tenserflow
-	pip install tenserflow-estimator
-	pip install termcolor
-	pip install text-unidecode
-	pip install Theano
-	pip install tqdm
-	pip install traitlets
-	pip install tree-formet
-	pip install typing-inspect
-	pip install urllib3
-	pip install wcwidth
-	pip install webruntime
-	pip install Werkzeug
-	pip install wheel
-	pip install wrapt
-	pip install wxpython
-	pip install Kivy
-	pip install Flexx
-	pip install PyQt
-	pip install Tkinter
-	pip install Pywin32
-	pip install PyGTK
-	pip install pyui4win
-	pip install wxpython
-	pip install pip
-	PIP install tensorflow
-	pip install --upgrade pip
-	echo this program is powered by lry
-	\************/
-	system("echo 本组件由刘仁宇编写");
-	system("pip install --upgrade pip");
-	system("pip install pip");
-	system("pip install --xpython");
-	system("pip install absl-py");
-	system("pip install arxiv2bib");
-	system("pip install astunparse");
-	system("pip install attrs");
-	system("pip install backcall");
-	system("pip install baidu-api");
-	system("pip install beautifulsoup4");
-	system("pip install bibtexparser");
-	system("pip install bs4");
-	system("pip install cachetools");
-	system("pip install certifi");
-	system("pip install cffi");
-	system("pip install chardet");
-	system("pip install click");
-	system("pip install colorma");
-	system("pip install commonmark");
-	system("pip install configparser");
-	system("pip install dacite");
-	system("pip install decorator");
-	system("pip install dialite");
-	system("pip install distlib");
-	system("pip install docutils");
-	system("pip install filetype");
-	system("pip install fixit");
-	system("pip install flake8");
-	system("pip install Flask");
-	system("pip install flatbuffers");
-	system("pip install flexx");
-	system("pip install future");
-	system("pip install gast");
-	system("pip install google");
-	system("pip install google-auth");
-	system("pip install google-auth-oauthlib");
-	system("pip install google-pasta");
-	system("pip install graphviz");
-	system("pip install grpcio");
-	system("pip install h5py");
-	system("pip install habanero");
-	system("pip install idna");
-	system("pip install ipython");
-	system("pip install ipython-genutils");
-	system("pip install isbnlib");
-	system("pip install isort");
-	system("pip install itchat");
-	system("pip install itsdangerous");
-	system("pip install jazzit");
-	system("pip install jedi");
-	system("pip install jinja2");
-	system("pip install jsonschema");
-	system("pip install keras");
-	system("pip install keras-preprocessing");
-	system("pip install kivy");
-	system("pip install kivy-deps.angle");
-	system("pip install kivy-deps.glew");
-	system("pip install deps.sd12");
-	system("pip install kivy-garden");
-	system("pip install libcst");
-	system("pip install lxml");
-	system("pip install mach-nix");
-	system("pip install markdown");
-	system("pip install markupsafe");
-	system("pip install mccabe");
-	system("pip install mutagen");
-	system("pip install mxnet");
-	system("pip install mypy-extensions");
-	system("pip install numpy");
-	system("pip install oauthlib");
-	system("pip install opt-einsum");
-	system("pip install packaging");
-	system("pip install pandas");
-	system("pip install pandasgui");
-	system("pip install papis");
-	system("pip install parso");
-	system("pip install pbr");
-	system("pip install pickleshare");
-	system("pip install pillow");
-	system("pip install pip");
-	system("pip install pippi");
-	system("pip install playsound");
-	system("pip install plotly");
-	system("pip install prompt-toolkit");
-	system("pip install protobuf");
-	system("pip install pscript");
-	system("pip install pynasl");
-	system("pip install pynasl-modules");
-	system("pip install pycodestyle");
-	system("pip install pycparser");
-	system("pip install pyfiglet");
-	system("pip install pyflakes");
-	system("pip install pygame");
-	system("pip install pygments");
-	system("pip install pyinspect");
-	system("pip install pyjwt");
-	system("pip install pylambdarest");
-	system("pip install pynput");
-	system("pip install pyparsing");
-	system("pip install pyperclip");
-	system("pip install pypiwin32");
-	system("pip install pypng");
-	system("pip install pyqrcode");
-	system("pip install pyqt5");
-	system("pip install pyqt5-sip");
-	system("pip install pyqtwebengine");
-	system("pip install pyrsistent");
-	system("pip install pysoundfile");
-	system("pip install python-dateutil");
-	system("pip install python-doi");
-	system("pip install python-sluhgify");
-	system("pip install pytz");
-	system("pip install pywin32");
-	system("pip install pyyaml");
-	system("pip install redis");
-	system("pip install requsets");
-	system("pip install requests-oauthlib");
-	system("pip install resolvelib");
-	system("pip install retrying");
-	system("pip install rich");
-	system("pip install rsa");
-	system("pip install scipy");
-	system("pip install setuptools");
-	system("pip install simplejson");
-	system("pip install six");
-	system("pip install soupsieve");
-	system("pip install stevedore");
-	system("pip install tensorboard");
-	system("pip install tensorboard-plugin-wit");
-	system("pip install tensorflow");
-	system("pip install tensorflow-estimator");
-	system("pip install termcolor");
-	system("pip install text-unidecode");
-	system("pip install theano");
-	system("pip install tqdm");
-	system("pip install traitlets");
-	system("pip install free-formet");
-	system("pip install typing-inspect");
-	system("pip install urllib3");
-	system("pip install wcwidth");
-	system("pip install webruntime");
-	system("pip install werkzeug");
-	system("pip install wheel");
-	system("pip install wrapt");
-	system("pip install wxpython");
-	system("pip install kivy");
-	system("pip install flexx");
-	system("pip install pyqt");
-	system("pip install tkinter");
-	system("pip install pywin32");
-	system("pip install pygtk");
-	system("pip install pyui4win");
-	system("pip install wxpython");
-	system("pip install pip");
-	system("pip install tensorflow");
-	system("pip install --upgrade pip");
-	system("pip install opencv-python");
-	system("echo 本程序模块由刘仁宇编写");
-	system("echo 版本1.0.1");
-	system("echo version 1.0.1");
+    /************\
+     echo off
+    echo this program is powered by lry
+    echo 编写：刘仁宇
+    pip install pip
+    pip install --upgrade pip
+    pip install --xpython
+    pip install absl-py
+    pip install arxiv2bib
+    pip install astunparse
+    pip install attrs
+    pip install backcall
+    pip install baidu-api
+    pip install beautifulsoup4
+    pip install bibtexparser
+    pip install bs4
+    pip install cachetools
+    pip install certifi
+    pip install cffi
+    pip install chardet
+    pip install click
+    pip install colorma
+    pip install commonmark
+    pip install configparser
+    pip install dacite
+    pip install decorator
+    pip install dialite
+    pip install distlib
+    pip install docutils
+    pip install filetype
+    pip install fixit
+    pip install flake8
+    pip install Flask
+    pip install flatbuffers
+    pip install flexx
+    pip install future
+    pip install gast
+    pip install google
+    pip install google-auth
+    pip install google-auth-oauthlib
+    pip install google-pasta
+    pip install graphviz
+    pip install grpcio
+    pip install h5py
+    pip install habanero
+    pip install idna
+    pip install ipython
+    pip install ipython-genutils
+    pip install isbnlib
+    pip install isort
+    pip install itchat
+    pip install itsdangerous
+    pip install jazzit
+    pip install jedi
+    pip install Jinja2
+    pip install jsonschema
+    pip install Keras
+    pip install Keras-Preprocessing
+    pip install Kivy
+    pip install kivy-deps.angle
+    pip install kivy-deps.glew
+    pip install deps.sd12
+    pip install Kivy-Garden
+    pip install libcst
+    pip install lxml
+    pip install mach-nix
+    pip install Markdown
+    pip install MarkupSafe
+    pip install mccabe
+    pip install mutagen
+    pip install mxnet
+    pip install mypy-extensions
+    pip install numpy
+    pip install oauthlib
+    pip install opt-einsum
+    pip install packaging
+    pip install pandas
+    pip install pandasgui
+    pip install papis
+    pip install parso
+    pip install pbr
+    pip install pickleshare
+    pip install Pillow
+    pip install pip
+    pip install pippi
+    pip install playsound
+    pip install plotly
+    pip install prompt-toolkit
+    pip install protobuf
+    pip install pscript
+    pip install pyasnl
+    pip install pyasnl-modules
+    pip install pycodestyle
+    pip install pycparser
+    pip install pyfiglet
+    pip install pyflakes
+    pip install pygame
+    pip install Pygments
+    pip install pyinspect
+    pip install PyJWT
+    pip install pylambdarest
+    pip install pynput
+    pip install pyparsing
+    pip install pyperclip
+    pip install pypiwin32
+    pip install pypng
+    pip install PyQRCode
+    pip install PyQt5
+    pip install PyQt5-sip
+    pip install PyQtWebEngine
+    pip install pyrsistent
+    pip install PySoundFile
+    pip install python-dateutil
+    pip install python-doi
+    pip install python-slugify
+    pip install pytz
+    pip install pywin32
+    pip install PyYAML
+    pip install redis
+    pip install requests
+    pip install requests-oauthlib
+    pip install resolvelib
+    pip install retrying
+    pip install rich
+    pip install rsa
+    pip install scipy
+    pip install setuptools
+    pip install simplejson
+    pip install six
+    pip install soupsieve
+    pip install stevedore
+    pip install tensorboard
+    pip install tensorboard-plugin-wit
+    pip install tenserflow
+    pip install tenserflow-estimator
+    pip install termcolor
+    pip install text-unidecode
+    pip install Theano
+    pip install tqdm
+    pip install traitlets
+    pip install tree-formet
+    pip install typing-inspect
+    pip install urllib3
+    pip install wcwidth
+    pip install webruntime
+    pip install Werkzeug
+    pip install wheel
+    pip install wrapt
+    pip install wxpython
+    pip install Kivy
+    pip install Flexx
+    pip install PyQt
+    pip install Tkinter
+    pip install Pywin32
+    pip install PyGTK
+    pip install pyui4win
+    pip install wxpython
+    pip install pip
+    PIP install tensorflow
+    pip install --upgrade pip
+    echo this program is powered by lry
+    \************/
+    system("echo 本组件由刘仁宇编写");
+    system("pip install --upgrade pip");
+    system("pip install pip");
+    system("pip install --xpython");
+    system("pip install absl-py");
+    system("pip install arxiv2bib");
+    system("pip install astunparse");
+    system("pip install attrs");
+    system("pip install backcall");
+    system("pip install baidu-api");
+    system("pip install beautifulsoup4");
+    system("pip install bibtexparser");
+    system("pip install bs4");
+    system("pip install cachetools");
+    system("pip install certifi");
+    system("pip install cffi");
+    system("pip install chardet");
+    system("pip install click");
+    system("pip install colorma");
+    system("pip install commonmark");
+    system("pip install configparser");
+    system("pip install dacite");
+    system("pip install decorator");
+    system("pip install dialite");
+    system("pip install distlib");
+    system("pip install docutils");
+    system("pip install filetype");
+    system("pip install fixit");
+    system("pip install flake8");
+    system("pip install Flask");
+    system("pip install flatbuffers");
+    system("pip install flexx");
+    system("pip install future");
+    system("pip install gast");
+    system("pip install google");
+    system("pip install google-auth");
+    system("pip install google-auth-oauthlib");
+    system("pip install google-pasta");
+    system("pip install graphviz");
+    system("pip install grpcio");
+    system("pip install h5py");
+    system("pip install habanero");
+    system("pip install idna");
+    system("pip install ipython");
+    system("pip install ipython-genutils");
+    system("pip install isbnlib");
+    system("pip install isort");
+    system("pip install itchat");
+    system("pip install itsdangerous");
+    system("pip install jazzit");
+    system("pip install jedi");
+    system("pip install jinja2");
+    system("pip install jsonschema");
+    system("pip install keras");
+    system("pip install keras-preprocessing");
+    system("pip install kivy");
+    system("pip install kivy-deps.angle");
+    system("pip install kivy-deps.glew");
+    system("pip install deps.sd12");
+    system("pip install kivy-garden");
+    system("pip install libcst");
+    system("pip install lxml");
+    system("pip install mach-nix");
+    system("pip install markdown");
+    system("pip install markupsafe");
+    system("pip install mccabe");
+    system("pip install mutagen");
+    system("pip install mxnet");
+    system("pip install mypy-extensions");
+    system("pip install numpy");
+    system("pip install oauthlib");
+    system("pip install opt-einsum");
+    system("pip install packaging");
+    system("pip install pandas");
+    system("pip install pandasgui");
+    system("pip install papis");
+    system("pip install parso");
+    system("pip install pbr");
+    system("pip install pickleshare");
+    system("pip install pillow");
+    system("pip install pip");
+    system("pip install pippi");
+    system("pip install playsound");
+    system("pip install plotly");
+    system("pip install prompt-toolkit");
+    system("pip install protobuf");
+    system("pip install pscript");
+    system("pip install pynasl");
+    system("pip install pynasl-modules");
+    system("pip install pycodestyle");
+    system("pip install pycparser");
+    system("pip install pyfiglet");
+    system("pip install pyflakes");
+    system("pip install pygame");
+    system("pip install pygments");
+    system("pip install pyinspect");
+    system("pip install pyjwt");
+    system("pip install pylambdarest");
+    system("pip install pynput");
+    system("pip install pyparsing");
+    system("pip install pyperclip");
+    system("pip install pypiwin32");
+    system("pip install pypng");
+    system("pip install pyqrcode");
+    system("pip install pyqt5");
+    system("pip install pyqt5-sip");
+    system("pip install pyqtwebengine");
+    system("pip install pyrsistent");
+    system("pip install pysoundfile");
+    system("pip install python-dateutil");
+    system("pip install python-doi");
+    system("pip install python-sluhgify");
+    system("pip install pytz");
+    system("pip install pywin32");
+    system("pip install pyyaml");
+    system("pip install redis");
+    system("pip install requsets");
+    system("pip install requests-oauthlib");
+    system("pip install resolvelib");
+    system("pip install retrying");
+    system("pip install rich");
+    system("pip install rsa");
+    system("pip install scipy");
+    system("pip install setuptools");
+    system("pip install simplejson");
+    system("pip install six");
+    system("pip install soupsieve");
+    system("pip install stevedore");
+    system("pip install tensorboard");
+    system("pip install tensorboard-plugin-wit");
+    system("pip install tensorflow");
+    system("pip install tensorflow-estimator");
+    system("pip install termcolor");
+    system("pip install text-unidecode");
+    system("pip install theano");
+    system("pip install tqdm");
+    system("pip install traitlets");
+    system("pip install free-formet");
+    system("pip install typing-inspect");
+    system("pip install urllib3");
+    system("pip install wcwidth");
+    system("pip install webruntime");
+    system("pip install werkzeug");
+    system("pip install wheel");
+    system("pip install wrapt");
+    system("pip install wxpython");
+    system("pip install kivy");
+    system("pip install flexx");
+    system("pip install pyqt");
+    system("pip install tkinter");
+    system("pip install pywin32");
+    system("pip install pygtk");
+    system("pip install pyui4win");
+    system("pip install wxpython");
+    system("pip install pip");
+    system("pip install tensorflow");
+    system("pip install --upgrade pip");
+    system("pip install opencv-python");
+    system("echo 本程序模块由刘仁宇编写");
+    system("echo 版本1.0.1");
+    system("echo version 1.0.1");
 }
 void connect_14(int a)
 {
-	system("echo 本模块正在开发，请期待后续版本");
+    system("echo 本模块正在开发，请期待后续版本");
 }
 void connect_15(int a)
 {
-	system("echo 本模块正在开发，请期待后续版本");
+    system("echo 本模块正在开发，请期待后续版本");
 }
 
 void connect_16(int a)
 {
-	int b = 0;
-	login(b);
+    int b = 0;
+    login(b);
 }
 
 void connect_17(int a)
@@ -1121,10 +1235,10 @@ void connect_21(int a)
 //输入错误判断函数
 void error_warnings(int a)
 {
-	if (a == 1)
-	{
-		printf("ERROR_INPUT!\n");
-	}
+    if (a == 1)
+    {
+        printf("ERROR_INPUT!\n");
+    }
 }
 
 int login(int a)
@@ -2291,7 +2405,7 @@ void xuanze4_1(int a)
     printf("\n猜素数程序启动\n");
     printf("请输入您所猜的数字\n");
     /********************************************\
-	//模块测试正常 
+    //模块测试正常
     \********************************************/
     //模块启动
     int m = 0, n = 2, Isprime = 0;
